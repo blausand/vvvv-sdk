@@ -27,24 +27,48 @@
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
+    <Reference Include="VVVV.Core, Version=1.0.5063.37324, Culture=neutral, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\common\src\core\Core\bin\x86\Debug\VVVV.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="VVVV.PluginInterfaces, Version=1.0.5063.37325, Culture=neutral, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\lib\nodes\plugins\VVVV.PluginInterfaces.dll</HintPath>
+    </Reference>
+    <Reference Include="VVVV.Utils, Version=1.0.5063.37321, Culture=neutral, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\common\src\core\Utils\bin\x86\Debug\VVVV.Utils.dll</HintPath>
+    </Reference>
+    <Reference Include="VVVV.Utils3rdParty, Version=1.0.5063.37322, Culture=neutral, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\lib\nodes\plugins\VVVV.Utils3rdParty.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DataTypes\TodoVariableDataType.cs" />
     <Compile Include="Lib\Engine\Filters\TodoCategoryFilter.cs" />
-    <Compile Include="Lib\Engine\IO\AbstractTodoInput.cs" />
+    <Compile Include="Lib\Engine\IO\AbstractTodoInput.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Lib\Engine\ITodoClock.cs" />
     <Compile Include="Lib\Engine\Mappers\TodoTweenMapper.cs" />
     <Compile Include="Lib\Engine\Mappers\TodoTweenMapper_Delegate.cs" />
     <Compile Include="Lib\Engine\TodoCategory.cs" />
-    <Compile Include="Lib\Engine\TodoEngine.cs" />
+    <Compile Include="Lib\Engine\TodoEngine.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Lib\Engine\TodoVariable.cs" />
     <Compile Include="Lib\Enums\Enums.cs" />
     <Compile Include="Lib\Modules\AbstractTodoDevice.cs" />
     <Compile Include="Lib\Modules\Internal\TodoVVVVClock.cs" />
-    <Compile Include="Lib\Modules\Midi\TodoMidiDevice.cs" />
+    <Compile Include="Lib\Modules\Midi\TodoMidiDevice.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Lib\Modules\Midi\TodoMidiDeviceManager.cs" />
     <Compile Include="Lib\Modules\Midi\TodoMidiInput.cs" />
-    <Compile Include="Lib\Modules\Osc\TodoOscDevice.cs" />
+    <Compile Include="Lib\Modules\Osc\TodoOscDevice.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Lib\Modules\Osc\TodoOscInput.cs" />
     <Compile Include="Lib\Persist\TodoPresetWrapper.cs" />
     <Compile Include="Lib\Persist\TodoXmlUnwrapper.cs" />
@@ -60,7 +84,9 @@
     <Compile Include="Modules\Lib\Xml\Serialization\TrackSerializer.cs" />
     <Compile Include="Modules\OscTree\TodoOscTreeController.cs" />
     <Compile Include="Nodes\Clock\TodoGetMidiClock.cs" />
-    <Compile Include="Nodes\Controllers\TodoExposedNodeController.cs" />
+    <Compile Include="Nodes\Controllers\TodoExposedNodeController.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Nodes\FeedBack\SendCustomFeedBackNode.cs" />
     <Compile Include="Nodes\Presets\TodoLoadPresetNode.cs" />
     <Compile Include="Nodes\Presets\TodoSavePresetNode.cs" />
@@ -74,7 +100,9 @@
       <DependentUpon>TodoMapNode_ctrl.cs</DependentUpon>
     </Compile>
     <Compile Include="Nodes\Variables\TodoCreateOscMappingNode.cs" />
-    <Compile Include="Nodes\Variables\TodoDeleteMappingNode.cs" />
+    <Compile Include="Nodes\Variables\TodoDeleteMappingNode.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Nodes\Variables\TodoDeleteVariableNode.cs" />
     <Compile Include="Nodes\Variables\TodoGetMappingInfo.cs" />
     <Compile Include="Nodes\Variables\TodoGetValueNode.cs" />
@@ -149,23 +177,8 @@
       <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\..\..\..\..\..\common\src\core\Core\Core.csproj">
-      <Project>{6AD35106-187B-4A3A-A801-E665CD12E020}</Project>
-      <Name>Core %28core\Core%29</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\..\..\..\src\core\PluginInterfaces\PluginInterfaces.csproj">
-      <Project>{837C740A-485C-424C-8C38-086ED3DC73CB}</Project>
-      <Name>PluginInterfaces</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\..\..\..\src\core\Utils3rdParty\Utils3rdParty.csproj">
-      <Project>{87863121-C124-4585-B3BB-7706F03ECC64}</Project>
-      <Name>Utils3rdParty</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\..\..\..\..\common\src\core\Utils\Utils.csproj">
-      <Project>{C3773330-81FA-4253-823E-1BDE1529AA99}</Project>
-      <Name>Utils</Name>
-    </ProjectReference>
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>"C:\Program FIles (x86)\MEDIA\vvvv_45beta31.2_x86\vvvv.exe"</PostBuildEvent>
+  </PropertyGroup>
 </Project>

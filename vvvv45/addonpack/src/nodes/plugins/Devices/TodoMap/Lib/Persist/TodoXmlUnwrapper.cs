@@ -190,6 +190,11 @@ namespace VVVV.TodoMap.Lib.Persist
                     {
                         osc.Message = child.InnerText;
                     }
+                    if (child.Name == "Slice")
+                    {
+                        osc.InputSlice = child.InnerText;
+                    }
+                    
                     if (child.Name == "TakeOverMode")
                     {
                         osc.TakeOverMode = (eTodoLocalTakeOverMode)Enum.Parse(typeof(eTodoLocalTakeOverMode), child.InnerText);

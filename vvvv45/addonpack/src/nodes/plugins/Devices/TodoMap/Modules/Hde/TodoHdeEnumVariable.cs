@@ -40,7 +40,8 @@ namespace VVVV.TodoMap.Lib.Engine.Hde
                 if (var == null)
                 {
                     var = new TodoVariable(vn);
-                    var.Category = "Global";
+                    //mnb: Takes IOBoxes' Tag now as Category by default
+                    var.Category = (this.node.FindPin("Tag").Spread == "||") ? "Global" : this.node.FindPin("Tag").Spread;
                     engine.RegisterVariable(var, false);
                 }
 

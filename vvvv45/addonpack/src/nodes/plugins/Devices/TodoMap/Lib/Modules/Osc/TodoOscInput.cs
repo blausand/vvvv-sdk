@@ -10,8 +10,8 @@ namespace VVVV.TodoMap.Lib.Modules.Osc
 
         public TodoOscInput()
             : base()
-        {
-
+        { 
+            this.InputSlice = "0";
         }
 
         public void SetDevice(TodoOscDevice dev)
@@ -44,6 +44,22 @@ namespace VVVV.TodoMap.Lib.Modules.Osc
             get
             {
                 return this.Message;
+            }
+        }
+
+        public int Slice { get; set; }
+        //mnb: the slice(s) of incoming OSC bundle 
+        public override string InputSlice
+        {
+            get
+            {
+                return this.Slice.ToString();
+            }
+            set
+            {
+                this.Slice = Convert.ToInt32(value);
+                //mnb: Add validation here and 
+                // callback UI with this.Slice.toString()
             }
         }
 

@@ -21,11 +21,17 @@ namespace VVVV.TodoMap.Lib
 
         public abstract string InputType { get; }
         public abstract string InputMap { get; }
-
+        
         public AbstractTodoInput()
         {
-            this.device = "Any";
+            this.device = "Any"; 
         }
+
+        public virtual string InputSlice //mnb: Maybe reuse Device column for this?
+        { 
+            get { return "";}
+            set { }
+        } 
 
         public virtual string Device
         {

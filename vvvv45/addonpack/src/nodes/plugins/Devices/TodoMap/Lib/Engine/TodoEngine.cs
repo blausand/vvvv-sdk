@@ -5,6 +5,7 @@ using VVVV.TodoMap.Lib.Modules.Midi;
 using VVVV.TodoMap.Lib.Modules.Osc;
 using System.Linq;
 using VVVV.TodoMap.Modules.OscTree;
+using VVVV.Core.Logging;
 
 namespace VVVV.TodoMap.Lib
 {
@@ -42,7 +43,7 @@ namespace VVVV.TodoMap.Lib
             this.selectedvar = null;
             this.LearnMode = false;
             this.AnyDevice = true;
-
+            
             this.mididevice = new TodoMidiDevice(this);
             this.oscdevice = new TodoOscDevice(this);
             this.osctree = new TodoOscTreeController(this);
@@ -81,15 +82,15 @@ namespace VVVV.TodoMap.Lib
 
         public void SelectVariable(string name)
         {
-            if (this.variables.ContainsKey(name))
-            {
-                this.selectedvar = this.variables[name];
-                this.selectedinput = null;
-            }
-            else
-            {
-                this.selectedvar = null;
-            }
+                if (this.variables.ContainsKey(name))
+                {
+                    this.selectedvar = this.variables[name];
+                    this.selectedinput = null;
+                }
+                else
+                {
+                    this.selectedvar = null;
+                }
         }
 
         public void SelectInput(int idx)
@@ -118,7 +119,7 @@ namespace VVVV.TodoMap.Lib
         }
 
         public void DeselectVariable() 
-        { 
+        {
             this.selectedvar = null;
             this.selectedinput = null;
         }

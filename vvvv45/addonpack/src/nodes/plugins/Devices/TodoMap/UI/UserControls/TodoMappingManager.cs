@@ -8,6 +8,7 @@ using System.Windows.Forms;
 using VVVV.TodoMap.Lib;
 using VVVV.TodoMap.UI.Controls;
 using VVVV.TodoMap.Lib.Engine.Filters;
+//using VVVV.Core.Logging;
 
 namespace VVVV.TodoMap.UI.UserControls
 {
@@ -23,7 +24,7 @@ namespace VVVV.TodoMap.UI.UserControls
 
         private TodoEngine engine;
 
-        public TodoMappingManager()
+        public TodoMappingManager() 
         {
             InitializeComponent();
 
@@ -221,6 +222,7 @@ namespace VVVV.TodoMap.UI.UserControls
                     ListViewItem lv = this.lvInputs.Items.Add(input.InputType);
                     lv.SubItems.Add(input.Device);
                     lv.SubItems.Add(input.InputMap);
+                    lv.SubItems.Add(input.InputSlice);  //mnb: add column for Slice
                     lv.SubItems.Add(input.TakeOverMode.ToString());
                     lv.SubItems.Add(input.FeedBackMode.ToString());
                     lv.Selected = true;
@@ -232,8 +234,9 @@ namespace VVVV.TodoMap.UI.UserControls
                     ListViewItem lv = this.lvInputs.Items[idx];
                     lv.SubItems[1].Text = input.Device;
                     lv.SubItems[2].Text = input.InputMap;
-                    lv.SubItems[3].Text = input.TakeOverMode.ToString();
-                    lv.SubItems[4].Text = input.FeedBackMode.ToString();
+                    lv.SubItems[3].Text = input.InputSlice;
+                    lv.SubItems[4].Text = input.TakeOverMode.ToString();
+                    lv.SubItems[5].Text = input.FeedBackMode.ToString();
                     lv.Selected = true;
                     lv.Tag = input;
                 }
@@ -251,6 +254,7 @@ namespace VVVV.TodoMap.UI.UserControls
                     ListViewItem lv = this.lvInputs.Items.Add(input.InputType);
                     lv.SubItems.Add(input.Device);
                     lv.SubItems.Add(input.InputMap);
+                    lv.SubItems.Add(input.InputSlice);
                     lv.SubItems.Add(input.TakeOverMode.ToString());
                     lv.SubItems.Add(input.FeedBackMode.ToString());
                     lv.Tag = input;
@@ -372,11 +376,15 @@ namespace VVVV.TodoMap.UI.UserControls
         {
             AbstractTodoInput input = this.engine.SelectedInput;
 
-            if (e.SubItem == 3)
+            if (e.SubItem == 3) //mnb: Slice
+            {
+                input.InputSlice = e.DisplayText;
+            }
+            if (e.SubItem == 4)
             {
                 input.TakeOverMode = (eTodoLocalTakeOverMode)Enum.Parse(typeof(eTodoLocalTakeOverMode), e.DisplayText);
             }
-            if (e.SubItem == 4)
+            if (e.SubItem == 5)
             {
                 input.FeedBackMode = (eTodoLocalFeedBackMode)Enum.Parse(typeof(eTodoLocalFeedBackMode), e.DisplayText);
             }
@@ -471,6 +479,7 @@ namespace VVVV.TodoMap.UI.UserControls
             this.lvInputs.Columns.Add("Control Type");
             this.lvInputs.Columns.Add("Device");
             this.lvInputs.Columns.Add("Control Data");
+            this.lvInputs.Columns.Add("Slice"); //mnb
             this.lvInputs.Columns.Add("TakeOver");
             this.lvInputs.Columns.Add("Feedback");
 
@@ -492,6 +501,7 @@ namespace VVVV.TodoMap.UI.UserControls
             this.inputEditors.Add(tb);
             this.inputEditors.Add(tb);
             this.inputEditors.Add(tb);
+            this.inputEditors.Add(tb); //mnb: Slice
             this.inputEditors.Add(cbto);
             this.inputEditors.Add(cbfeedback);
 

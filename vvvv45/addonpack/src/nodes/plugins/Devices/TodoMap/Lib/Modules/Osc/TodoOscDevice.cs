@@ -243,7 +243,7 @@ namespace VVVV.TodoMap.Lib.Modules.Osc
                     this.engine.SelectInput(input);
 
                     input.Message = msg.Address;
-
+                        
                     this.engine.VarriableMappingAdded(input, isnew);
                 }
 
@@ -253,7 +253,8 @@ namespace VVVV.TodoMap.Lib.Modules.Osc
                     {
                         if (toi.Message == msg.Address)
                         {
-                            double dblval = Convert.ToDouble(msg.Values[0]);
+
+                            double dblval = Convert.ToDouble(msg.Values[toi.Slice]);    //mnb: was [0], now choosing Slice
                             toi.UpdateValue(dblval);
                         }
                     }

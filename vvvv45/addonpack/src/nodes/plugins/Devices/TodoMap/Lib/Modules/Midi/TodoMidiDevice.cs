@@ -73,7 +73,8 @@ namespace VVVV.TodoMap.Lib.Modules.Midi
         #endregion
 
         #region Constructor
-        public TodoMidiDevice(TodoEngine engine) : base(engine)
+        public TodoMidiDevice(TodoEngine engine)
+            : base(engine)
         {
             this.usb = new UsbDetector();
             this.usb.UsbRemoved += usb_UsbRemoved;
@@ -84,7 +85,7 @@ namespace VVVV.TodoMap.Lib.Modules.Midi
             for (int i = 0; i < InputDevice.DeviceCount; i++)
             {
                 this.inputstatus.Add(eTodoMidiStatus.Connected);
-                this.inputdevname.Add(InputDevice.GetDeviceCapabilities(i).name);             
+                this.inputdevname.Add(InputDevice.GetDeviceCapabilities(i).name);
             }
 
             for (int i = 0; i < OutputDevice.DeviceCount; i++)
@@ -137,7 +138,7 @@ namespace VVVV.TodoMap.Lib.Modules.Midi
                     }
                 }
 
-            }  
+            }
         }
 
         private void usb_UsbRemoved(object sender, EventArgs e)
@@ -179,7 +180,7 @@ namespace VVVV.TodoMap.Lib.Modules.Midi
                     this.OnMidiOutputStatusChange(i, eTodoMidiStatus.Disconnected);
                     this.outdevs.Remove(i);
                 }
-            } 
+            }
         }
 
         #endregion
@@ -223,7 +224,7 @@ namespace VVVV.TodoMap.Lib.Modules.Midi
         public List<string> InputAuto { get { return this.inputauto; } }
         public List<string> OutputAuto { get { return this.outputauto; } }
 
-        public void SetInputAutoStart(int idx,bool auto)
+        public void SetInputAutoStart(int idx, bool auto)
         {
             string devname = this.inputdevname[idx];
             if (auto)
@@ -296,14 +297,14 @@ namespace VVVV.TodoMap.Lib.Modules.Midi
                 this.OnMidiOutputAutoChange(idx, auto);
             }
 
-            
 
-            
+
+
         }
         #endregion
 
         #region Set Input Enabled
-        public void SetInputEnabled(int idx,bool enabled)
+        public void SetInputEnabled(int idx, bool enabled)
         {
             if (enabled)
             {
@@ -433,8 +434,8 @@ namespace VVVV.TodoMap.Lib.Modules.Midi
         #region Message Received
         private void dev_ChannelMessageReceived(object sender, ChannelMessageEventArgs e)
         {
-             InputDevice dev = (InputDevice)sender;
-             string devname = InputDevice.GetDeviceCapabilities(dev.DeviceID).name;
+            InputDevice dev = (InputDevice)sender;
+            string devname = InputDevice.GetDeviceCapabilities(dev.DeviceID).name;
 
             #region Learn Mode
             if (this.engine.LearnMode && this.engine.SelectedVariable != null)
@@ -448,7 +449,7 @@ namespace VVVV.TodoMap.Lib.Modules.Midi
                 if (e.Message.Command == ChannelCommand.Controller)
                 {
                     controltype = eTodoMidiType.Controller;
-                    
+
                 }
                 else
                 {
@@ -510,7 +511,7 @@ namespace VVVV.TodoMap.Lib.Modules.Midi
                 {
                     input.Device = devname;
                 }
-                
+
                 input.ControlType = controltype;
                 input.ControlValue = e.Message.Data1;
                 input.MidiChannel = e.Message.MidiChannel;
@@ -594,12 +595,12 @@ namespace VVVV.TodoMap.Lib.Modules.Midi
 
                     }
                 }
-            }          
+            }
         }
         #endregion
 
         #region Feedback
-        public void CustomFeedBack(string devname,TodoVariable var, double value)
+        public void CustomFeedBack(string devname, TodoVariable var, double value)
         {
             int idx = this.outputdevname.IndexOf(devname);
 
@@ -676,7 +677,7 @@ namespace VVVV.TodoMap.Lib.Modules.Midi
 
         private void TodoMidiDevice_SysRealtimeMessageReceived(object sender, SysRealtimeMessageEventArgs e)
         {
-            
+
             if (e.Message.SysRealtimeType == SysRealtimeType.Start)
             {
                 this.FTicks = 0;

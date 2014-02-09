@@ -110,6 +110,7 @@ namespace VVVV.TodoMap.Lib.Persist
                 TodoOscInput osc = input as TodoOscInput;
                 sb.AppendLine("OSC\">");
                 sb.AppendLine("<Message>" + osc.Message + "</Message>");
+                sb.AppendLine("<Slice>" + osc.InputSlice + "</Slice>");
             }
 
             if (input is TodoMidiInput)

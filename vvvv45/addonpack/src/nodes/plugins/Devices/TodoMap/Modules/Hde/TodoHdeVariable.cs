@@ -12,7 +12,7 @@ namespace VVVV.TodoMap.Lib.Engine.Hde
         private INode2 node;
 
         private IPin2 valuepin;
-
+       
         private IPin2 minpin;
         private IPin2 maxpin;
 
@@ -32,7 +32,8 @@ namespace VVVV.TodoMap.Lib.Engine.Hde
                 if (var == null)
                 {
                     var = new TodoVariable(varname);
-                    var.Category = "Global";
+                    //mnb: Takes IOBoxes' Tag now as Category by default
+                    var.Category = (this.node.FindPin("Tag").Spread == "||") ? "Global" : this.node.FindPin("Tag").Spread.Replace("|", "");
                     engine.RegisterVariable(var, false);
                 }
 
@@ -51,13 +52,14 @@ namespace VVVV.TodoMap.Lib.Engine.Hde
                     if (var == null)
                     {
                         var = new TodoVariable(vn);
-                        var.Category = "Global";
+                        //mnb: Takes IOBoxes' Tag now as Category by default
+                        var.Category = (this.node.FindPin("Tag").Spread == "||") ? "Global" : this.node.FindPin("Tag").Spread.Replace("|", "");
                         engine.RegisterVariable(var, false);
                     }
 
                     var.ValueChanged += var_ValueChanged;
                     var.VariableUpdated += var_VariableUpdated;
-
+                    
                     this.vars.Add(var);
                 }
             }
